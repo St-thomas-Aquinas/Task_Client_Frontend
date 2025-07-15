@@ -83,7 +83,7 @@ export default function App() {
       
         
       <br /><Button variant="contained" color="primary" href="https://x.com">
-          sing In
+          
         </Button>
        
         </div>

@@ -3,10 +3,16 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Componets/Navigation';
 import RedirectToHome from './Componets/RedirectToHome';
-import Home from './Screens/Home';
-import About from './Screens/About';
+import Readmore from './Screens/ReadMore';
+import CreatePost from './Screens/CreatePost';
 import SingUp from './Screens/SingUp';
-import UserProfile from './Screens/UserProfile';
+import Home from './Screens/Home';
+import Singin from './Screens/Singin';
+import Profile from './Screens/updateprofile';
+import Myposts from './Screens/myposts';
+import Updateprofile from './Screens/updateprofile';
+import Nav from './Componets/Navigation';
+import { ReadMore } from '@mui/icons-material';
 
 const App: React.FC = () => {
 
@@ -15,12 +21,17 @@ const App: React.FC = () => {
       <div>
         <Navigation />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          
+          <Route path="/Readmore" element={<Readmore />} />
+          <Route path="/nav" element={<Nav />} />
+          <Route path="/Singin" element={<Singin />} />
+          <Route path="/createPost" element={<CreatePost />} />
           <Route path="/SingUp" element={<SingUp />} />
-          <Route path="/redirect" element={<RedirectToHome />} />
-          <Route path="/userprofile/:username" element={<UserProfile />} />
-
+          <Route path="/myprofile" element={<Profile />} />
+          <Route path="/myposts" element = {<Myposts />} />
+          <Route path="/updateprofile" element = {<Updateprofile />} />
+          <Route path="/Home" element={<Home />} />
+         
         </Routes>
       </div>
     </Router>
