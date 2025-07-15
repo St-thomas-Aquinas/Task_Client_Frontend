@@ -1,8 +1,8 @@
 // App.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Componets/Navigation';
-import RedirectToHome from './Componets/RedirectToHome';
+
 import Readmore from './Screens/ReadMore';
 import CreatePost from './Screens/CreatePost';
 import SingUp from './Screens/SingUp';
@@ -12,7 +12,7 @@ import Profile from './Screens/updateprofile';
 import Myposts from './Screens/myposts';
 import Updateprofile from './Screens/updateprofile';
 import Nav from './Componets/Navigation';
-import { ReadMore } from '@mui/icons-material';
+
 
 const App: React.FC = () => {
 
