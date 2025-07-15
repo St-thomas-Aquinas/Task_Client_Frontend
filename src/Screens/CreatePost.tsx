@@ -1,4 +1,4 @@
-import e from "express";
+
 import "/src/App.css";
 import {
 Stack,
@@ -37,36 +37,6 @@ if(authorizationToken == null){
     
   }
 
-  const handlecontent = async (e:any) => {
-    e.preventDefault()
-    const file = e.target.files[0]
-
-    if(!file) return
-    e.preventDefault()
-    const Data = new FormData();
-    
-    const Title:any  = Data.get('Title')
-    console.log("iam titile",Title)
-    const synopsis:any  = Data.get('synopsis')
-    const contents:any  = Data.get('synopsis')
-    const postdata = new FormData()
-    postdata.append("Title",Title)
-    postdata.append("synopsis",synopsis)
-    postdata.append("featureImage ",UploadedImageURL.url)
-    postdata.append("contents",contents)
-
-     console.log(Title)
-    fetch('http://localhost:5000/posts',{
-      method:"POST",
-     headers:{"content-Type":"application/json"},
-      body: JSON.stringify(postdata)
-      
-}).then(() =>{
-alert("New user created")
-})
-
-    
-  }
 
   return (
     <div className="App" >

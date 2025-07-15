@@ -1,12 +1,11 @@
-import { Email } from "@mui/icons-material";
+
 import "/src/App.css";
 import {
   
   TextField,
   Button,
 } from '@mui/material';
-import jwt from "jsonwebtoken";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 export default function App() {
   const location = useLocation();
@@ -15,7 +14,7 @@ export default function App() {
   const [UserName, setUserName] = useState(" ");
   const [Email, setEmail] = useState(" ");
 
-   async function max(params:type) {
+   async function max() {
   
          const res = await fetch(`https://blogit-server-9cb0.onrender.com/users/${location.state}`)
         const data = await res.json();

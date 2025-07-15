@@ -1,5 +1,4 @@
 import {
-    Grid,
     Card,
     CardContent,
     Typography,
@@ -10,7 +9,7 @@ import {
   } from "@mui/material";
   import { Link } from 'react-router-dom';
 
-  import React, { useState, useEffect } from "react";
+  import { useState, useEffect } from "react";
 
   export default function AltCard1() {
     
@@ -40,7 +39,7 @@ import {
   
     return (
       <div className="app">
-       {  Object.values(posts).map((elem,index) => (
+       {  Object.values(posts).map((_elem,index) => (
          
           <Card
            sx={{

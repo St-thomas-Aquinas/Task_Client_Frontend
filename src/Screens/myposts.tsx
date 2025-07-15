@@ -1,5 +1,4 @@
 import {
-  Grid,
   Card,
   CardContent,
   Typography,
@@ -10,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link } from 'react-router-dom';
 import Singin from './Singin'
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 export default function AltCard1() {

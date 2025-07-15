@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "/src/App.css";
 import {
   
@@ -7,16 +7,14 @@ import {
   Typography,
 } from '@mui/material';
 import { Link } from "react-router-dom";
-import { Navigate } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom';
-//import { useHistory } from 'react-router-dom';
-import jwt from "jsonwebtoken";
 
 
 
 export default function App() {
     const navigate = useNavigate();
-    const [posts, setPosts] = useState(" ");
+    const [_posts, setPosts] = useState(" ");
     
   //  const history = useHistory();
   return (
@@ -36,7 +34,7 @@ alert(formvalues.UserName)
       //let authorizationToken:any = localStorage.getItem("max");
 
       //alert(JSON.stringify(authorizationToken))
-async function max(params:type) {
+async function max() {
   
 
       const resposts = await fetch(
