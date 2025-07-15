@@ -17,7 +17,7 @@ export default function App() {
 
    async function max(params:type) {
   
-         const res = await fetch(`http://localhost:5000/users/${location.state}`)
+         const res = await fetch(`https://blogit-server-9cb0.onrender.com/users/${location.state}`)
         const data = await res.json();
       
         const FirstName = data.data.user.FirstName

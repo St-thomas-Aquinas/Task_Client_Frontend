@@ -22,7 +22,7 @@ import {
        
         setloading(true);
         try {
-          const response = await fetch(`http://localhost:5000/posts`);
+          const response = await fetch(`https://blogit-server-9cb0.onrender.com/posts`);
           
           const data = await response.json();
           const data2 = data.data

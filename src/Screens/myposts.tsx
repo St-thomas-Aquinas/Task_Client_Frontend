@@ -32,7 +32,7 @@ export default function AltCard1() {
      
       setloading(true);
       try {
-        const response = await fetch(`http://localhost:5000/users/maxkuria`);
+        const response = await fetch(`https://blogit-server-9cb0.onrender.com/${username}`);
         
         const data = await response.json();
         const data2 = data.data.user.Id

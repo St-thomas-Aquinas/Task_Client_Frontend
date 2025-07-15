@@ -15,7 +15,7 @@ export default function App() {
         const formData = new FormData(e.currentTarget);
       const formvalues = Object.fromEntries(formData)
       alert(JSON.stringify(formvalues))
-        fetch('http://localhost:5000/users',{
+        fetch('https://blogit-server-9cb0.onrender.com/users',{
           method:"POST",
          headers:{"content-Type":"application/json"},
           body: JSON.stringify(formvalues)

@@ -83,7 +83,7 @@ alert("New user created")
             authorId: 2
   }
   alert(JSON.stringify(postdata))
-    fetch('http://localhost:5000/posts',{
+    fetch('https://blogit-server-9cb0.onrender.com/posts',{
       method:"POST",
      headers:{"content-Type":"application/json"},
       body: JSON.stringify(postdata)
