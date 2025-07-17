@@ -25,7 +25,7 @@ export default function App() {
         const formData = new FormData(e.currentTarget);
        const formvalues = Object.fromEntries(formData)
 alert(formvalues.UserName)
-       const res = await fetch(`https://blogit-server-9cb0.onrender.com/${JSON.parse(JSON.stringify(formvalues.UserName))}`)
+       const res = await fetch(`https://task-server-e7d3.onrender.com/users${JSON.parse(JSON.stringify(formvalues.UserName))}`)
        const data = await res.json();
        const data2 = data.data
       
