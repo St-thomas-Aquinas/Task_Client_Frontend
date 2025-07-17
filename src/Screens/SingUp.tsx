@@ -7,13 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { useState} from "react";
 // End of Declaration of Imports
 
+
+//Global Variable used for setting servity 
+let severity:any = " ";
 //Begining of App
 export default function App() {
   //Declaration Of constasts and Variables
   const [Success, setsuccess] = useState(false);
   const [Message, setmessage] = useState(" ");
-  const [severity1, setseverity1] = useState(``);
   const navigate = useNavigate();
+ 
+
   //End Declaration Of constasts and Variables
 
 
@@ -41,11 +45,11 @@ export default function App() {
   })
   //Setting the error and success message and Redirecting the user to sing in page
   if(Success == true){
-    setseverity1(`success`)
+    severity = "success"
     setmessage('Your Have Succesfully Created a Task Master Account')
     navigate('/singin')
   }else{
-    setseverity1("error")
+    severity = "error"
     setmessage('Failed to create a Task Master Account')
   
   }
@@ -56,8 +60,8 @@ export default function App() {
           </Typography> 
           <br/>
 
-                //@ts-ignore
-          <Alert severity ={'severity'} >{Message}</Alert>
+                
+          <Alert severity={severity} >{Message}</Alert>
 
 
         <TextField
