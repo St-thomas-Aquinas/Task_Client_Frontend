@@ -12,7 +12,7 @@ export default function App() {
   //Declaration Of constasts and Variables
   const [Success, setsuccess] = useState(false);
   const [Message, setmessage] = useState(" ");
-  const [severity, setseverity] = useState(``);
+  const [severity1, setseverity1] = useState(``);
   const navigate = useNavigate();
   //End Declaration Of constasts and Variables
 
@@ -41,11 +41,11 @@ export default function App() {
   })
   //Setting the error and success message and Redirecting the user to sing in page
   if(Success == true){
-    setseverity(`success`)
+    setseverity1(`success`)
     setmessage('Your Have Succesfully Created a Task Master Account')
     navigate('/singin')
   }else{
-    setseverity("error")
+    setseverity1("error")
     setmessage('Failed to create a Task Master Account')
   
   }
@@ -55,7 +55,9 @@ export default function App() {
                 Sing Up for Task Master.
           </Typography> 
           <br/>
-          <Alert severity = {severity}>{Message}</Alert>
+
+                //@ts-ignore
+          <Alert severity ={'severity'} >{Message}</Alert>
 
 
         <TextField
