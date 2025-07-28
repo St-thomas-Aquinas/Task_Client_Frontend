@@ -1,10 +1,8 @@
 
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -13,7 +11,7 @@ import Fab from '@mui/material/Fab';
 
 import AddIcon from '@mui/icons-material/Add';
 
-import Home from "../Screens/Home"
+//import Home from "../Screens/Home"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -26,18 +24,37 @@ const StyledFab = styled(Fab)({
   margin: '0 auto',
 });
 import { useLocation } from "react-router-dom";
+
+
+
 export default function BottomAppBar() {
+
+  
   const location = useLocation();
-  const navigate = useNavigate();
+const navigate = useNavigate();
+//const UserName = location.state; 
+
+ 
   function max(){
-    navigate('/myprofile',{state:location.state})
+    navigate('/updateprofile',{state:location.state
+    
+    })
   }
+
   function mypost(){
+    navigate('/MyTrash',{state:location.state})
+  }
+  
+  function Home(){
     navigate('/Home',{state:location.state})
+  }
+  
+  function Createpost(){
+    navigate('/CreatePost',{state:location.state})
   }
   const [sing, setsing] = useState(null);
   if(sing == null){
-    {<Home/>}
+  ////  {<Home />}
   }
 
   function set(){
@@ -52,27 +69,26 @@ export default function BottomAppBar() {
         <Toolbar>
           <IconButton color="inherit" onClick={mypost}>
               <Typography gutterBottom variant="h5" component="div"  color="warning">
-                  My Posts
+                  Trash
                 </Typography>
           </IconButton>
 
           <IconButton color="inherit" aria-label="open drawer" onClick={set}>
             
-            <Link to="/singin"> <Typography gutterBottom variant="h5" component="div" color="warning">
+            <Link to="/singin"> <Typography gutterBottom variant="h5" component="div" color="success">
                 sing in
                 </Typography> </Link>
           </IconButton>
-          <StyledFab color="warning" aria-label="add">
-            
-           
-           <Link to="/CreatePost">  <AddIcon /></Link>
+          <StyledFab color="success" aria-label="add" onClick={Createpost}>
+          
+             <AddIcon />
           
           </StyledFab>
           <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="warning">
-          <Link to="/Home">  <Typography gutterBottom variant="h5" component="div"  color="warning">
+          <IconButton color="warning" onClick={Home}>
+            <Typography gutterBottom variant="h5" component="div"  color="success">
                   HOME
-                </Typography> </Link>
+                </Typography> 
           </IconButton>
           
           <IconButton color="inherit" onClick={max}>

@@ -1,88 +1,118 @@
+//importing Modules
 import { useState } from "react";
 import "/src/App.css";
-import {
-  
-  TextField,
-  Button,
-  Typography,
-} from '@mui/material';
+import { TextField, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+//End of importing Modules
 
-import { useNavigate } from 'react-router-dom';
+//Declaring Global Variables
+let severity: any = "";
 
+//End of Declaring Global Variables
 
 
 export default function App() {
-    const navigate = useNavigate();
-    const [_posts, setPosts] = useState(" ");
-    
-  //  const history = useHistory();
+  //Declaring Constants
+  const navigate = useNavigate();
+  const [_posts, _setPosts] = useState(" ");
+  const [Message, setmessage] = useState(" ");
+  //End O f Declaring Constants
+
+
   return (
-    <div className="App" >
+    <div className="App">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
 
-      <form onSubmit={async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget);
-       const formvalues = Object.fromEntries(formData)
-alert(formvalues.UserName)
-       const res = await fetch(`https://task-server-e7d3.onrender.com/users${JSON.parse(JSON.stringify(formvalues.UserName))}`)
-       const data = await res.json();
-       const data2 = data.data
-      
-      localStorage.setItem("max", data2);
+          //Declaring Variables to get data from Form
+          const formData = new FormData(e.currentTarget);
+          const formvalues: any = Object.fromEntries(formData);
+          //End of Declaring Variable to get data from Form
 
-      //let authorizationToken:any = localStorage.getItem("max");
+          //API Call to the Back End
+          const response = await fetch(
+            `https://task-server-e7d3.onrender.com/users/api/auth/login/${JSON.parse(JSON.stringify(formvalues.UserName))}`
+          );
+          const response1 = await fetch(
+            `https://task-server-e7d3.onrender.com/users/api/auth/login/${JSON.parse(JSON.stringify(formvalues.PassWord))}`
+          );
+          const data = await response1.json();
+          let data1 = await response.json();
+          data1 
+          //End of API call to the Back End
 
-      //alert(JSON.stringify(authorizationToken))
-async function max() {
-  
 
-      const resposts = await fetch(
-        `http://localhost:5000/posts/${data2.user.Id}`
-      );
+          //Getting Token from Back End and Saving It Locally
+          const token = JSON.stringify(data.token);
+          localStorage.setItem("Access", token);
+          localStorage.setItem("UserName",JSON.parse(JSON.stringify(formvalues.UserName)));
+          //End
+        
+             
+          //Redirecting User to Home Page 
+          if (data.responseDetails[1] != null) {
+            return navigate("/nav", { state: formData.get("UserName") });
+          }
+          //End Of redirecting user to Home Page
 
-      const datapost = await resposts.json();
-      const datapost1 = datapost.data;
-      const datapost2 = JSON.parse(JSON.stringify(datapost1));
-      //alert(datapost2)
-      setPosts(datapost2);
-    
-      }
-      max()
-      if(Boolean(res) == true){
-        return navigate('/Home', { state:formData.get("UserName")});
-       } }}>
-       
+          
+          //Setting the error and success message
+          if (data.responseDetails != null) {
+            severity = "success";
+            setmessage(
+              "Your Have Succesfully  Loged In to your task Master Account"
+              
+            );
+            
+          } else {
+            severity="error"
+            setmessage(
+              "Failed to Succesfully  Loged In to your task Master Account, Check UserName And Password and try Again "
+            );
+          }
+          //End of Setting the error and success message
+
+        }}
+      >
         <br />
         <h3>Sing In</h3>
+        <br />
+
+        <Alert severity={severity}>{Message}</Alert>
+        <br />
+
         <TextField
-         name="UserName"
+          name="UserName"
           style={{ width: "200px", margin: "5px" }}
           type="text"
           label="Enter your Username"
           variant="outlined"
         />
         <br />
+
         <TextField
-         name="PassWord"
+          name="PassWord"
           style={{ width: "200px", margin: "5px" }}
           type="text"
           label="Enter PassWord"
           variant="outlined"
         />
+
         <br />
-       
         <br />
         <Button variant="contained" color="primary" type="submit">
           Sing In
         </Button>
-        <Link to="/SingUp">  <Typography gutterBottom variant="h5" component="div"  color="warning">
-                  or Sing UP, if you do not have an account
-                </Typography> </Link>
+
+        <Link to="/SingUp">
+          <Typography gutterBottom variant="h5" component="div" color="success">
+            or Sing UP, if you do not have an account
+          </Typography>
+        </Link>
       </form>
-      
-      
-       
-        </div>
+    </div>
   );
 }

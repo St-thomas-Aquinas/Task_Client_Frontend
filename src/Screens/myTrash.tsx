@@ -1,27 +1,23 @@
-//import sections
+//Import sections
 import { Card, CardContent,Typography,Button,CardActionArea,Stack, CardActions} from "@mui/material";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-//End Of import sections
+// End of Import sections
+
 export default function AltCard1() {
-  //Declarations of Constants
+  //Declaration of constants
   const [posts, setPosts] = useState(" ");
-  const [_loading, setloading] = useState(true);
   const location = useLocation();
   const UserName = location.state;
-  const navigate = useNavigate();
+  //End of Declaration of constants
 
-   //End of Declarations of Constants
-
-
-//Function to fetch task
   useEffect(() => {
     async function HandleRequest() {
-      setloading(true);
+
       try {
-       
+        
         const response = await fetch(
-          `https://task-server-e7d3.onrender.com/Tasks/NotDelete/${UserName}`
+          `https://task-server-e7d3.onrender.com/Tasks/Trash/${UserName}`
         );
 
         const data = await response.json();
@@ -30,15 +26,13 @@ export default function AltCard1() {
 
         setPosts(data2);
       } catch (e) {
-      } finally {
-        setloading(false);
-      }
+      } 
     }
     
     HandleRequest();
     
   }, []);
-//End of  Function to fetch task.
+
   return (
     <div className="app">
       <Stack spacing={2}>
@@ -51,6 +45,7 @@ export default function AltCard1() {
         >
           <Card sx={{ maxWidth: 345, position: "relative" }}>
             <CardActionArea>
+             
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {JSON.parse(JSON.stringify(posts[index])).Title}
@@ -61,24 +56,16 @@ export default function AltCard1() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-
             <Stack spacing={10} direction="row">
-              <Button size="small" color="error" variant="contained" onClick={ async function HandleDelete() {
-      //Fetch request to set isDeleted to True
-      fetch(`https://task-server-e7d3.onrender.com/Tasks/de/${JSON.parse(JSON.stringify(posts[index])).id}`, {
-        method: "DELETE",
-       //End of Fetch request to set isDeleted to True
+              <Button size="small" color="success" variant="contained" onClick={ async function HandleRestore() {
+      //Fetch request to set task for isDeleted to false
+      fetch(`https://task-server-e7d3.onrender.com/Tasks/re/${JSON.parse(JSON.stringify(posts[index])).id}`, {
+        method: "Delete",
        
-      }).then(() => {})
-    }}>
-              Delete
-              </Button>
-
-              <Button size="small" color="primary" variant="contained" onClick={  function updatePage(){
-    navigate('/updateTask',{state:JSON.parse(JSON.stringify(posts[index])).id})
-  }}>
-  Update
-</Button>
+      }).then(() => { }); }}>
+           Restore
+               </Button>
+              
               </Stack>
             </CardActions>
           </Card>
