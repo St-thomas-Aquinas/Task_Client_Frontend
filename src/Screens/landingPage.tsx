@@ -1,5 +1,5 @@
 
-import { Button, Typography,Box } from "@mui/material";
+import { Button, Typography} from "@mui/material";
 import { Link } from 'react-router-dom';
 import "/src/App.css";
 
@@ -33,8 +33,8 @@ const ProfileTwo = () => {
           </Button>
           <br/><br/><br/>
           <Typography gutterBottom variant="h5" component="div" color="primary">
-            This App is Meant , to Help people with diabites manage thier Condition,Running  a custom Model, If you feel sick or your condtion worsens,Tell Our Model what your feeling and it will set our for your a set of task to relive you of your condtion
-          </Typography>
+           
+          This app is meant to help people with diabetes manage their condition. It runs a custom model. If you feel sick or your condition worsens, tell our model how you're feeling, and it will generate a set of tasks to help relieve your symptoms. </Typography>
 
   
       
