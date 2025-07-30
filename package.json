@@ -18,14 +18,17 @@
     "@prisma/client": "^6.11.1",
     "@types/react-router-dom": "^5.3.3",
     "express": "^5.1.0",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mui-markdown": "^2.0.2",
     "react": "^19.1.0",
+    "react-cookie": "^8.0.1",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/express": "^5.0.3",
+    "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.2",

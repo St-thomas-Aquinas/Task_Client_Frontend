@@ -3,34 +3,48 @@ import "/src/App.css";
 import { Typography, TextField, Button } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 // End of Declaration of Imports
 
 //Global Variable used for setting servity
 let severity: any = " ";
-let UploadedImageURL: any = " ";
+let UploadedImageURL: any = " "||null;
 
 //Begining of App
 export default function App() {
   //Declaration Of constasts and Variables
   const [Success, setsuccess] = useState(false);
-  const [Message, setmessage] = useState(" ");
-  const [posts, setPosts] = useState(" ");
+  const [Message, setmessage]:any = useState(null);
+  const [FirstName, setFirstName]:any = useState(null);
+  const [LastName, setLastName]:any = useState(null);
+  const [Email, setEmail]:any = useState(null);
+  const [UserName, setUserName]:any = useState(null);
+  const value = Cookies.get('name');
   //End Declaration Of constasts and Variables
-
+  
+  const navigate = useNavigate();
+  if(!value){
+    navigate('/Singin')
+  }
   useEffect(() => {
     async function HandleRequest() {
       try {
         const response = await fetch(
-          `https://task-server-e7d3.onrender.com/Tasks/NotDelete/maxkuria`
+          `https://task-server-e7d3.onrender.com/Users/MyProfile/${value}`
         );
 
         const data = await response.json();
-        const data2 = data.data;
+        const data2 = data.User
 
-        setPosts(data2);
+        setFirstName(JSON.parse(JSON.stringify(data2.FirstName)))
+        setLastName(JSON.parse(JSON.stringify(data2.LastName)))
+        setEmail(JSON.parse(JSON.stringify(data2.Email)))
+        setUserName(JSON.parse(JSON.stringify(data2.UserName)))
+
       } catch (e) {}
     }
-    HandleRequest;
+    HandleRequest();
   });
 
   //function for handling images
@@ -61,7 +75,7 @@ export default function App() {
       <form
         onSubmit={(e) => {
           //Prenting defualt Behaivor
-          e.preventDefault;
+          e.preventDefault
           //Prenting defualt Behaivor
 
           //Beging  of Post Request
@@ -74,10 +88,11 @@ export default function App() {
             Avatar: UploadedImageURL.url,
           };
           alert(JSON.stringify(postdata));
-          fetch("https://blogit-server-9cb0.onrender.com/posts", {
-            method: "POST",
+          fetch(`https://task-server-e7d3.onrender.com/Users/update/${value}`, {
+            method: "PATCH",
             headers: { "content-Type": "application/json" },
-            body: JSON.stringify(postdata),
+            body: JSON.stringify(postdata)
+
           }).then(() => {
             setsuccess(true);
           });
@@ -94,7 +109,8 @@ export default function App() {
             severity = "error";
             setmessage("Failed to update a Task Master Account Details");
           }
-        }}
+        }
+      }
       >
         <Typography gutterBottom variant="h5" component="div" color="primary">
           Update Account Profile Details
@@ -111,7 +127,7 @@ export default function App() {
           style={{ width: "200px", margin: "5px" }}
           type="text"
           variant="outlined"
-          defaultValue={posts[1]}
+          defaultValue={FirstName}
         />
         <br />
 
@@ -124,7 +140,7 @@ export default function App() {
           style={{ width: "200px", margin: "5px" }}
           type="text"
           variant="outlined"
-          defaultValue={posts[2]}
+          defaultValue={LastName}
         />
         <br />
 
@@ -137,7 +153,7 @@ export default function App() {
           style={{ width: "200px", margin: "5px" }}
           type="text"
           variant="outlined"
-          defaultValue={posts[3]}
+          value={Email}
         />
         <br />
 
@@ -150,7 +166,7 @@ export default function App() {
           style={{ width: "200px", margin: "5px" }}
           type="text"
           variant="outlined"
-          defaultValue={posts[4]}
+          defaultValue={UserName}
         />
 
         <Typography gutterBottom variant="h6" component="div" color="primary">

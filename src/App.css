@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+.background {
+  background-image: url(
+"https://tse4.mm.bing.net/th/id/OIP.S89wriwnV0rhVRtgvu3z0AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+  );
+
+  
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

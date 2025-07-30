@@ -1,11 +1,12 @@
 //Import
 import "/src/App.css";
 import { Stack, TextField, Button, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import { useEffect, useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import Cookies from 'js-cookie';
 //End Of Import
 let severity: any = "";
 
@@ -13,32 +14,47 @@ export default function App() {
   //Declaration of Constants and Varibles.
   const location = useLocation();
   const TaskId = location.state;
-  alert(TaskId)
-  const [Title, setTitle] = useState(" ");
-  const [Description, setDescription] = useState(" ");
-  const [Message, setmessage] = useState(" ");
+  const [Title, setTitle] = useState(null);
+  const [Description, setDescription] = useState(null);
+  const [Message, setmessage]:any = useState(null);
   //End of Declaration of Constants and Varibles
 
-  //Function to get the task using Task Id 
-  useEffect(() => {
-    async function HandleRequest() {
-      try {
-        const response = await fetch(
-          `https://task-server-e7d3.onrender.com/Tasks/SpesificTask/${TaskId}`
-        );
+  const navigate = useNavigate();
+  const value = Cookies.get('name');
+  //To ensure that the User Sing in first
+if(!value){
+  navigate('/Singin')
+}
 
-        const data = await response.json();
-        const Title = JSON.parse(JSON.stringify(data.data.Title))
-        const Description = JSON.parse(JSON.stringify(data.data.Description))
+//Function to fetch task
+useEffect(() => {
+  async function HandleRequest() {
+    
+    try {
+     
+      const response = await fetch(
+        `https://task-server-e7d3.onrender.com/Tasks/MyTask/${TaskId}`
+      );
 
-        setTitle(Title);
-        setDescription(Description)
-        alert(Description)
-      } catch (e) {}
+      const data = await response.json();
+      const data2 = data.Tasks;
+      const Title = JSON.parse(JSON.stringify(data2.Title))
+      const Description = JSON.parse(JSON.stringify(data2.Description))
+      
+      
+      setTitle(Title);
+      setDescription(Description)
+    } catch (e) {
+    } finally {
+     // setloading(false);
     }
-    HandleRequest();
-  });
-   //End Function to get the task using Task Id 
+  }
+  
+  HandleRequest();
+  
+}, []);
+//End of  Function to fetch task.
+
 
   return (
     <div className="App">
@@ -126,12 +142,17 @@ export default function App() {
           <br />
           <FormControlLabel control={<Switch />} label="Mark AS Complete" onChange={function markComplete(){
               //Fetch request to set isDeleted to True
-      fetch(`https://task-server-e7d3.onrender.com/Tasks/MarkCompletedTask/b6a87334-18d8-4585-ba1d-919b55c75149`, {
+      fetch(`https://task-server-e7d3.onrender.com/Tasks/complete/${TaskId}`, {
         method: "DELETE",
        //End of Fetch request to set isDeleted to True
        
-      }).then(() => {})
-    
+      }).then(() => { severity = "success";
+      setmessage("Your Have Succesfully Completed your Task");})
+      .catch(() => {
+        severity = "error";
+        setmessage("Failed to Update Task to completed");
+      });
+
           }} />
         </Stack>
       </form>

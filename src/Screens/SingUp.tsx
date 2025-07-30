@@ -32,7 +32,12 @@ export default function App() {
           //Declaring const to get form Data
           const formData = new FormData(e.currentTarget);
           const formvalues = Object.fromEntries(formData);
-        
+         //End of Declaring Variable to get data from Form
+         severity = "success";
+         setmessage(
+           "Loading Please wait...."
+           
+         );
 
           //Fetch request
           fetch("https://task-server-e7d3.onrender.com/users/api/auth/register/", {
@@ -54,7 +59,7 @@ export default function App() {
         }}
       >
         <Typography gutterBottom variant="h5" component="div" color="primary">
-          Sing Up for Task Master.
+          Sing Up for MyDiabetes.Ai
         </Typography>
         <br />
 

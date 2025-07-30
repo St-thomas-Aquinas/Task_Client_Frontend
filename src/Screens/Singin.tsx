@@ -5,6 +5,9 @@ import { TextField, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
+import Cookies from 'js-cookie';
+
+
 //End of importing Modules
 
 //Declaring Global Variables
@@ -18,6 +21,7 @@ export default function App() {
   const navigate = useNavigate();
   const [_posts, _setPosts] = useState(" ");
   const [Message, setmessage] = useState(" ");
+
   //End O f Declaring Constants
 
 
@@ -31,18 +35,31 @@ export default function App() {
           const formData = new FormData(e.currentTarget);
           const formvalues: any = Object.fromEntries(formData);
           //End of Declaring Variable to get data from Form
-
+          severity = "success";
+          setmessage(
+            "Loading Please wait...."
+            
+          );
           //API Call to the Back End
-          const response = await fetch(
-            `https://task-server-e7d3.onrender.com/users/api/auth/login/${JSON.parse(JSON.stringify(formvalues.UserName))}`
-          );
-          const response1 = await fetch(
-            `https://task-server-e7d3.onrender.com/users/api/auth/login/${JSON.parse(JSON.stringify(formvalues.PassWord))}`
-          );
-          const data = await response1.json();
-          let data1 = await response.json();
-          data1 
+        
+          const response = await fetch("https://task-server-e7d3.onrender.com/Users/api/auth/login", {
+            method: "POST",
+            headers: { "content-Type": "application/json" },
+            body: JSON.stringify(formvalues),
+          })
+          const data = await response.json()
+          const data2 = JSON.stringify(data)
+          data2
+      
+           
+          
           //End of API call to the Back End
+         
+        // Set a cookie
+Cookies.set('name', JSON.parse(JSON.stringify(formvalues.UserName)), { expires: 7 });
+
+
+
 
 
           //Getting Token from Back End and Saving It Locally
@@ -50,22 +67,25 @@ export default function App() {
           localStorage.setItem("Access", token);
           localStorage.setItem("UserName",JSON.parse(JSON.stringify(formvalues.UserName)));
           //End
-        
+     
              
           //Redirecting User to Home Page 
-          if (data.responseDetails[1] != null) {
-            return navigate("/nav", { state: formData.get("UserName") });
+          if (data.responseDetails[1] != "") {
+            return navigate("/createPost", { state: formData.get("UserName") });
           }
+          
           //End Of redirecting user to Home Page
 
           
           //Setting the error and success message
-          if (data.responseDetails != null) {
+          if (data.responseDetails[1] != "") {
             severity = "success";
             setmessage(
               "Your Have Succesfully  Loged In to your task Master Account"
+            
               
             );
+           
             
           } else {
             severity="error"
@@ -78,7 +98,9 @@ export default function App() {
         }}
       >
         <br />
-        <h3>Sing In</h3>
+        <Typography gutterBottom variant="h5" component="div" color="success">
+            Sing In to MyDiabites.Ai
+          </Typography>
         <br />
 
         <Alert severity={severity}>{Message}</Alert>
@@ -94,9 +116,9 @@ export default function App() {
         <br />
 
         <TextField
-          name="PassWord"
+          name="Password"
           style={{ width: "200px", margin: "5px" }}
-          type="text"
+          type="password"
           label="Enter PassWord"
           variant="outlined"
         />

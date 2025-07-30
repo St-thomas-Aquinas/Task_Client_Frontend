@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Componets/Navigation';
 
-import Readmore from './Screens/ReadMore';
+import LandingPage from './Screens/landingPage';
 import CreatePost from './Screens/CreatePost';
 import SingUp from './Screens/SingUp';
 import Home from './Screens/Home';
@@ -21,10 +21,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <Navigation />
+      <Navigation/>
+        
         <Routes>
        
-          <Route path="/Readmore" element={<Readmore />} />
+          <Route path="/Readmore" element={<LandingPage />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/Singin" element={<Singin />} />
           <Route path="/createPost" element={<CreatePost />} />
@@ -37,6 +38,7 @@ const App: React.FC = () => {
           <Route path="/updateTask" element = {<UpdatePost />} />
          
         </Routes>
+        
       </div>
     </Router>
   );
