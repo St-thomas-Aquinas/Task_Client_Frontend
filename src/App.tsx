@@ -1,7 +1,6 @@
 // App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navigation from './Componets/Navigation';
 
 import LandingPage from './Screens/landingPage';
 import CreatePost from './Screens/CreatePost';
