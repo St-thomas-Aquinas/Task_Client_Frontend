@@ -21,11 +21,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-      <Navigation/>
+     
         
         <Routes>
        
-          <Route path="/Readmore" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/Singin" element={<Singin />} />
           <Route path="/createPost" element={<CreatePost />} />
@@ -38,6 +38,7 @@ const App: React.FC = () => {
           <Route path="/updateTask" element = {<UpdatePost />} />
          
         </Routes>
+      
         
       </div>
     </Router>

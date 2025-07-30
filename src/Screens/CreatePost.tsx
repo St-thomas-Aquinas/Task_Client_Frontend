@@ -5,6 +5,8 @@ import {  useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import Cookies from 'js-cookie';
+import Navigation from '../Componets/Navigation';
+
 //End Of Import
 let severity: any = "";
 let  result:any 
@@ -25,6 +27,7 @@ if(!value){
 
   return (
     <div className="App">
+      <Navigation/>
       <Typography gutterBottom variant="h1" component="div" color="success">
       MyDiabetes.Ai
           </Typography>
