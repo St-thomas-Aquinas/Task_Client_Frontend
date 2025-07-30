@@ -24,7 +24,7 @@ export default function App() {
   //End Declaration Of constasts and Variables
   
   const navigate = useNavigate();
-  if(!value){
+  if(value == null){
     navigate('/Singin')
   }
   useEffect(() => {
