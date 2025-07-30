@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 //Global Variable used for setting servity
 let severity: any = " ";
-let UploadedImageURL: any = " "||null;
+let UploadedImageURL: any = " ";
 
 //Begining of App
 export default function App() {
