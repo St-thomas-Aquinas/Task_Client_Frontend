@@ -105,7 +105,7 @@ const value = Cookies.get('name');
           <IconButton color="inherit" aria-label="open drawer" onClick={set}>
             
             <Link to="/singin"> <Typography gutterBottom variant="h5" component="div" color="success">
-                sing in
+          
                 </Typography> </Link>
           </IconButton>
           <StyledFab color="success" aria-label="add" onClick={Createpost}>
