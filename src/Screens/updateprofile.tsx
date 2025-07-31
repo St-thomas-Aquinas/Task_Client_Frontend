@@ -5,6 +5,7 @@ import Alert from "@mui/material/Alert";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+import Navigation from '../Componets/Navigation';
 // End of Declaration of Imports
 
 //Global Variable used for setting servity
@@ -21,6 +22,7 @@ export default function App() {
   const [Email, setEmail]:any = useState(null);
   const [UserName, setUserName]:any = useState(null);
   const value = Cookies.get('name');
+ 
   //End Declaration Of constasts and Variables
   
   const navigate = useNavigate();
@@ -72,6 +74,7 @@ export default function App() {
 
   return (
     <div className="App">
+       <Navigation/>
       <form
         onSubmit={(e) => {
           //Prenting defualt Behaivor

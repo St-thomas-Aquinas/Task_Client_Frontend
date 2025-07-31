@@ -3,6 +3,7 @@ import { Card, CardContent,Typography,Button,CardActionArea,Stack, CardActions} 
 import {   useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+import Navigation from '../Componets/Navigation';
 //End Of import sections
 export default function AltCard1() {
   //Declarations of Constants
@@ -50,6 +51,7 @@ if(!value){
 //End of  Function to fetch task.
   return (
     <div className="app">
+       <Navigation/>
       <Typography gutterBottom variant="h6" component="div" color="primary">
           How are you feeling?, Here are Doc John Baptista Recomendations
         </Typography>

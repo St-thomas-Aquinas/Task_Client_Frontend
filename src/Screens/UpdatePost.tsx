@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import Cookies from 'js-cookie';
+import Navigation from '../Componets/Navigation';
 //End Of Import
 let severity: any = "";
 
@@ -17,6 +18,7 @@ export default function App() {
   const [Title, setTitle] = useState(null);
   const [Description, setDescription] = useState(null);
   const [Message, setmessage]:any = useState(null);
+
   //End of Declaration of Constants and Varibles
 
   const navigate = useNavigate();
@@ -58,6 +60,7 @@ useEffect(() => {
 
   return (
     <div className="App">
+       <Navigation/>
       <form
         name="form"
         onSubmit={(e) => {

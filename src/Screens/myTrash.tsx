@@ -3,7 +3,7 @@ import { Card, CardContent,Typography,Button,CardActionArea,Stack, CardActions} 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-
+import Navigation from '../Componets/Navigation';
 // End of Import sections
 
 export default function AltCard1() {
@@ -44,6 +44,7 @@ if(!value){
 
   return (
     <div className="app">
+      <Navigation/>
       <Stack spacing={2}>
       {Object.values(posts).map((_elem, index) => (
         <Card
