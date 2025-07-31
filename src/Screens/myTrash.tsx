@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import Navigation from '../Componets/Navigation';
+import Alert from "@mui/material/Alert";
 // End of Import sections
-
+let severity: any = "";
 export default function AltCard1() {
   //Declaration of constants
   const [posts, setPosts] = useState(" ");
  // const _location = useLocation();
   const navigate = useNavigate();
+  const [_posts, _setPosts] = useState(" ");
+  const [Message, setmessage] = useState(" ");
   
   //End of Declaration of constants
 
@@ -31,9 +34,21 @@ if(!value){
 
         const data = await response.json();
         const data2 = data.DeletedTasks;
-        
+          //End of Declaring Variable to get data from Form
+          severity = "success";
+          setmessage(
+            "Loading Please wait...."
+            
+          );
 
         setPosts(data2);
+        if(posts != null){
+          severity = "success";
+          setmessage(
+            "Here is your Completed Tasks"
+            
+          );
+        }
       } catch (e) {
       } 
     }
@@ -46,6 +61,7 @@ if(!value){
     <div className="app">
       <Navigation/>
       <Stack spacing={2}>
+      <Alert severity={severity}>{Message}</Alert>
       {Object.values(posts).map((_elem, index) => (
         <Card
           sx={{
